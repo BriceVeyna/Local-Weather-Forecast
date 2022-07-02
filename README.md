@@ -8,6 +8,7 @@ This program creates a weather application with user input for location.
 - JavaScript
 - HTML
 - CSS
+- Bootstrap
 - OpenWeather One Call API
 
 ## License
