@@ -1,0 +1,16 @@
+.jumbotron {
+    background-image: linear-gradient(270deg, rgb(10, 10, 30), rgb(25, 25, 190));
+    color: beige;
+}
+
+.card-main {
+    border: solid black 1px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.card {
+    background-color: rgb(24, 33, 58);
+    color: beige;
+    margin: 0 10px 0 0;
+}
