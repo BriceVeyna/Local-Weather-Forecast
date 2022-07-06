@@ -1,13 +1,28 @@
 // Global variables
-var searchBtn = document.getElementsById('search-btn')
+var cityInputEl = document.getElementById('inputCity');
+var searchBtn = document.getElementById('search-btn');
 
 // Global variables
-var city = ;
-var state = ;
+var city;
+var state;
 
-// Initialize search
+// Initialize search, store city and state variables
 function initSearch () {
 
+    // Store raw input (City, ST) in variable, log to verify
+    var fullCity = cityInputEl.value.trim();
+    console.log(fullCity);
+
+    // Reassign city variable to input before comma, log to verify
+    city = fullCity.split(',')[0];
+    console.log(city);
+
+    // Reassign state variable to input after comma, log to verify
+    state = fullCity.split(',')[1];
+    console.log(state);
+
+    // Initialize getCityData function
+    getCityData();
 }
 
 // Get city data
