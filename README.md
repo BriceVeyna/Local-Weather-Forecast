@@ -2,7 +2,7 @@
 This program creates a weather application with user input for location.
 
 ## Deployed Link
-[Weather-Dashboard](https://briceveyna.github.io/Weather-Dashboard/)
+[Local-Weather-Forecast](https://briceveyna.github.io/Local-Weather-Forecast/)
 
 ## Technologies Used
 - JavaScript
