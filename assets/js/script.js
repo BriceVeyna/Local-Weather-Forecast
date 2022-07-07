@@ -1,5 +1,6 @@
 // Global variables
 var cityInputEl = document.getElementById('inputCity');
+var mainCardEl = document.getElementById('card-main');
 var searchBtn = document.getElementById('search-btn');
 
 // Global location variables, initially created empty
@@ -50,13 +51,14 @@ function getCityData () {
 
 // Get weather data
 function getWeatherData (lat, lon) {
-    var requestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&appid=d76d8eb1dc0344e4e9577142cd0e98dd";
+    var requestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&units=imperial&appid=d76d8eb1dc0344e4e9577142cd0e98dd";
 
     fetch(requestUrl).then(function (response) {
             return response.json();
         })
         .then(function (data) {
             console.log(data);
+            weatherData = data;
             addWeatherData();
         }).catch(function (error) {
             console.log(error);
@@ -65,6 +67,21 @@ function getWeatherData (lat, lon) {
 
 // Add weather data to cards
 function addWeatherData () {
+
+    // Today's weather
+    var currentDate = moment.unix(weatherData.daily[0].dt).format('MM/DD/YYYY');
+    var currentTemp = weatherData.daily[0].temp.day;
+    var currentWind = weatherData.daily[0].wind_speed;
+    var currentHumidity = weatherData.daily[0].humidity;
+    var currentUV = weatherData.daily[0].uvi;
+
+    mainCardEl.children[0].textContent = city + ' (' + currentDate + ')';
+    mainCardEl.children[2].innerHTML = 'Temp: ' + currentTemp + ' &deg;F';
+    mainCardEl.children[3].textContent = 'Wind: ' + currentWind + ' MPH';
+    mainCardEl.children[4].textContent = 'Humidity: ' + currentHumidity + ' %';
+    mainCardEl.children[5].innerHTML = 'UV Index: <span>' + currentUV + '<span/>';
+
+    // 5-day forecast
 
 }
 
