@@ -10,6 +10,12 @@
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="./assets/css/styles.css">
+
+        <!-- Moment.js -->
+        <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+      ></script>
         
         <title>Local Weather Forecast</title>
     </head>
@@ -36,7 +42,7 @@
                         <input type="text" class="form-control" id="inputCity" placeholder="City, ST">
                     </div>
                     <div class="col-md-12 mb-2">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Search</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" id="search-btn">Search</button>
                     </div>
                 </form>
 
@@ -53,13 +59,13 @@
 
                 <!-- City forecast for current day -->
                 <div class="col-12 mb-3">
-                    <div class="card-main">
-                        <h2 class="card-title">Card title</h2>
-                        <img src="..." class="card-img" alt="...">
-                        <p class="card-text">Temp: <span>0</span> &deg;F</p>
-                        <p class="card-text">Wind: <span>0</span> MPH</p>
-                        <p class="card-text">Humidity: <span>0</span> %</p>
-                        <p class="card-text">UV Index: <span>0</span></p>
+                    <div id="card-main">
+                        <h2 class="card-title"></h2>
+                        <img src="" class="card-img" alt="Weather Icon">
+                        <p class="card-text"></p>
+                        <p class="card-text"></p>
+                        <p class="card-text"></p>
+                        <p class="card-text"></p>
                     </div>
                 </div>
     
@@ -69,50 +75,50 @@
                         <div>
                             <h3>5-Day Forecast:</h3>
                         </div>
-                        <div class="card-group">  
+                        <div class="card-group" id="forecast">  
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <img src="..." class="card-img" alt="...">
-                                    <p class="card-text">Temp: <span>0</span> &deg;F</p>
-                                    <p class="card-text">Wind: <span>0</span> MPH</p>
-                                    <p class="card-text">Humidity: <span>0</span> %</p>
+                                    <h5 class="card-title"></h5>
+                                    <img src="" class="card-img" alt="Weather Icon">
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <img src="..." class="card-img" alt="...">
-                                    <p class="card-text">Temp: <span>0</span> &deg;F</p>
-                                    <p class="card-text">Wind: <span>0</span> MPH</p>
-                                    <p class="card-text">Humidity: <span>0</span> %</p>
+                                    <h5 class="card-title"></h5>
+                                    <img src="" class="card-img" alt="Weather Icon">
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <img src="..." class="card-img" alt="...">
-                                    <p class="card-text">Temp: <span>0</span> &deg;F</p>
-                                    <p class="card-text">Wind: <span>0</span> MPH</p>
-                                    <p class="card-text">Humidity: <span>0</span> %</p>
+                                    <h5 class="card-title"></h5>
+                                    <img src="" class="card-img" alt="Weather Icon">
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <img src="..." class="card-img" alt="...">
-                                    <p class="card-text">Temp: <span>0</span> &deg;F</p>
-                                    <p class="card-text">Wind: <span>0</span> MPH</p>
-                                    <p class="card-text">Humidity: <span>0</span> %</p>
+                                    <h5 class="card-title"></h5>
+                                    <img src="" class="card-img" alt="Weather Icon">
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <img src="..." class="card-img" alt="...">
-                                    <p class="card-text">Temp: <span>0</span> &deg;F</p>
-                                    <p class="card-text">Wind: <span>0</span> MPH</p>
-                                    <p class="card-text">Humidity: <span>0</span> %</p>
+                                    <h5 class="card-title"></h5>
+                                    <img src="" class="card-img" alt="Weather Icon">
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
