@@ -1,36 +1,16 @@
 // Global variables
 var cityInputEl = document.getElementById('inputCity');
+var cityListEl = document.getElementById('city-list')
 var mainCardEl = document.getElementById('card-main');
 var bodyCardEl = document.getElementById('forecast')
 var searchBtn = document.getElementById('search-btn');
 
 // Global location variables, initially created empty
+var storedCities = [];
 var city;
 var state;
 var latitude;
 var longitude;
-
-// Initialize search, store city and state variables
-function initSearch (event) {
-
-    // Prevents default behavior of the button
-    event.preventDefault();
-
-    // Store raw input (City, ST) in variable, log to verify
-    var fullCity = cityInputEl.value.trim();
-    console.log(fullCity);
-
-    // Reassign city variable to input before comma, log to verify
-    city = fullCity.split(', ')[0];
-    console.log(city);
-
-    // Reassign state variable to input after comma, log to verify
-    state = fullCity.split(', ')[1];
-    console.log(state);
-
-    // Initialize getCityData function
-    getCityData();
-}
 
 // Get city data
 function getCityData () {
@@ -82,7 +62,7 @@ function addWeatherData () {
     mainCardEl.children[2].innerHTML = 'Temp: ' + currentTemp + ' &deg;F';
     mainCardEl.children[3].textContent = 'Wind: ' + currentWind + ' MPH';
     mainCardEl.children[4].textContent = 'Humidity: ' + currentHumidity + ' %';
-    mainCardEl.children[5].innerHTML = 'UV Index: <span>' + currentUV + '<span/>';
+    mainCardEl.children[5].innerHTML = 'UV Index: <span id="uvi">' + currentUV + '<span/>';
 
     // 5-day forecast
     for (var i = 1; i < 6; i++) {
@@ -93,7 +73,7 @@ function addWeatherData () {
         var forecastHumidity = weatherData.daily[i].humidity;
 
         bodyCardEl.children[i-1].children[0].children[0].textContent = forecastDate;
-        bodyCardEl.children[i-1].children[0].children[1].src = 'http://openweathermap.org/img/wn/' + currentIcon + '@2x.png';
+        bodyCardEl.children[i-1].children[0].children[1].src = 'http://openweathermap.org/img/wn/' + forecastIcon + '@2x.png';
         bodyCardEl.children[i-1].children[0].children[2].innerHTML = 'Temp: ' + forecastTemp + ' &deg;F';
         bodyCardEl.children[i-1].children[0].children[3].textContent = 'Wind: ' + forecastWind + ' MPH';
         bodyCardEl.children[i-1].children[0].children[4].textContent = 'Humidity: ' + forecastHumidity + ' %';
@@ -101,5 +81,49 @@ function addWeatherData () {
 
 }
 
+function getStoredCities() {
+    storedCities = localStorage.getItem('City');
+    console.log(storedCities);
+}
+
 // Start initSearch function when search button is clicked
-searchBtn.addEventListener('click', initSearch);
+searchBtn.addEventListener('click', function (event) {
+
+    // Prevents default behavior of the button
+    event.preventDefault();
+
+    // Store raw input (City, ST) in variable, log to verify
+    var fullCity = cityInputEl.value.trim();
+    console.log(fullCity);
+
+    // Reassign city & state variables to input before & after comma respectively, log to verify
+    city = fullCity.split(', ')[0];
+    console.log(city);
+    state = fullCity.split(', ')[1];
+    console.log(state);
+
+    // Store searched city in existing array
+    var fullCityArray = [fullCity];
+    var newCitiesArray = storedCities.concat(fullCityArray);
+
+    localStorage.setItem('City', newCitiesArray);
+
+    // 
+    for (var i = 0; i < storedCities.length; i++) {
+        var storedCity = storedCities[i];
+
+        var li = document.createElement('li');
+        li.textContent = storedCity;
+        li.setAttribute('data-index', i);
+        cityListEl.appendChild(li);
+    }
+
+    // Clear search Field
+    cityInputEl.innerHTML = '';
+
+    // Initialize getCityData function
+    getCityData();
+
+    // Initialize getStoredCities function
+    getStoredCities();
+});
