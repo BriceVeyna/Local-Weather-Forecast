@@ -1,6 +1,7 @@
 // Global variables
 var cityInputEl = document.getElementById('inputCity');
 var mainCardEl = document.getElementById('card-main');
+var bodyCardEl = document.getElementById('forecast')
 var searchBtn = document.getElementById('search-btn');
 
 // Global location variables, initially created empty
@@ -82,6 +83,17 @@ function addWeatherData () {
     mainCardEl.children[5].innerHTML = 'UV Index: <span>' + currentUV + '<span/>';
 
     // 5-day forecast
+    for (var i = 1; i < 6; i++) {
+        var forecastDate = moment.unix(weatherData.daily[i].dt).format('MM/DD/YYYY');
+        var forecastTemp = weatherData.daily[i].temp.day;
+        var forecastWind = weatherData.daily[i].wind_speed;
+        var forecastHumidity = weatherData.daily[i].humidity;
+
+        bodyCardEl.children[i-1].children[0].children[0].textContent = forecastDate;
+        bodyCardEl.children[i-1].children[0].children[2].innerHTML = 'Temp: ' + forecastTemp + ' &deg;F';
+        bodyCardEl.children[i-1].children[0].children[3].textContent = 'Wind: ' + forecastWind + ' MPH';
+        bodyCardEl.children[i-1].children[0].children[4].textContent = 'Humidity: ' + forecastHumidity + ' %';
+    }
 
 }
 
