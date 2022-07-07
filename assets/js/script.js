@@ -71,12 +71,14 @@ function addWeatherData () {
 
     // Today's weather
     var currentDate = moment.unix(weatherData.daily[0].dt).format('MM/DD/YYYY');
+    var currentIcon = weatherData.daily[0].weather[0].icon;
     var currentTemp = weatherData.daily[0].temp.day;
     var currentWind = weatherData.daily[0].wind_speed;
     var currentHumidity = weatherData.daily[0].humidity;
     var currentUV = weatherData.daily[0].uvi;
 
     mainCardEl.children[0].textContent = city + ' (' + currentDate + ')';
+    mainCardEl.children[1].src = 'http://openweathermap.org/img/wn/' + currentIcon + '@2x.png';
     mainCardEl.children[2].innerHTML = 'Temp: ' + currentTemp + ' &deg;F';
     mainCardEl.children[3].textContent = 'Wind: ' + currentWind + ' MPH';
     mainCardEl.children[4].textContent = 'Humidity: ' + currentHumidity + ' %';
@@ -85,11 +87,13 @@ function addWeatherData () {
     // 5-day forecast
     for (var i = 1; i < 6; i++) {
         var forecastDate = moment.unix(weatherData.daily[i].dt).format('MM/DD/YYYY');
+        var forecastIcon = weatherData.daily[i].weather[0].icon;
         var forecastTemp = weatherData.daily[i].temp.day;
         var forecastWind = weatherData.daily[i].wind_speed;
         var forecastHumidity = weatherData.daily[i].humidity;
 
         bodyCardEl.children[i-1].children[0].children[0].textContent = forecastDate;
+        bodyCardEl.children[i-1].children[0].children[1].src = 'http://openweathermap.org/img/wn/' + currentIcon + '@2x.png';
         bodyCardEl.children[i-1].children[0].children[2].innerHTML = 'Temp: ' + forecastTemp + ' &deg;F';
         bodyCardEl.children[i-1].children[0].children[3].textContent = 'Wind: ' + forecastWind + ' MPH';
         bodyCardEl.children[i-1].children[0].children[4].textContent = 'Humidity: ' + forecastHumidity + ' %';
