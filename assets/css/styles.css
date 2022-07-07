@@ -3,14 +3,18 @@
     color: beige;
 }
 
-.card-main {
+#card-main {
     border: solid black 1px;
     border-radius: 10px;
     padding: 10px;
 }
 
-.card {
+.card-body {
+    border-radius: 5px;
     background-color: rgb(24, 33, 58);
+}
+
+.card {
     color: beige;
     margin: 0 10px 0 0;
 }
