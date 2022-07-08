@@ -84,6 +84,17 @@ function addWeatherData () {
 function getStoredCities() {
     storedCities = localStorage.getItem('City');
     console.log(storedCities);
+
+    // 
+    for (var i = 0; i < storedCities.length; i++) {
+        var storedCity = storedCities[i];
+        console.log(storedCity);
+    
+        var li = document.createElement('li');
+        li.textContent = storedCity;
+        li.setAttribute('data-index', i);
+        cityListEl.appendChild(li);
+    }
 }
 
 // Start initSearch function when search button is clicked
@@ -104,26 +115,20 @@ searchBtn.addEventListener('click', function (event) {
 
     // Store searched city in existing array
     var fullCityArray = [fullCity];
+    console.log(storedCities);
+    console.log(fullCityArray);
     var newCitiesArray = storedCities.concat(fullCityArray);
+    console.log(newCitiesArray);
 
     localStorage.setItem('City', newCitiesArray);
 
-    // 
-    for (var i = 0; i < storedCities.length; i++) {
-        var storedCity = storedCities[i];
-
-        var li = document.createElement('li');
-        li.textContent = storedCity;
-        li.setAttribute('data-index', i);
-        cityListEl.appendChild(li);
-    }
-
     // Clear search Field
-    cityInputEl.innerHTML = '';
+    cityInputEl.value = '';
 
     // Initialize getCityData function
     getCityData();
 
-    // Initialize getStoredCities function
-    getStoredCities();
 });
+
+// Initialize getStoredCities function
+getStoredCities();
