@@ -81,11 +81,22 @@ function addWeatherData () {
 
 }
 
+// Get cities from local storage
 function getStoredCities() {
-    storedCities = localStorage.getItem('City');
+    localCities = JSON.parse(localStorage.getItem('City'));
     console.log(storedCities);
 
-    // 
+    // If there is no locally stored variable, default to empty program variable
+    if (localCities !== null) {
+        storedCities = localCities;
+    }
+
+    // Initialize addStoredCities function
+    addStoredCities();
+}
+
+// Add stored cities to list under search for quick access
+function addStoredCities() {
     for (var i = 0; i < storedCities.length; i++) {
         var storedCity = storedCities[i];
         console.log(storedCity);
@@ -114,19 +125,19 @@ searchBtn.addEventListener('click', function (event) {
     console.log(state);
 
     // Store searched city in existing array
-    var fullCityArray = [fullCity];
+    storedCities.push(fullCity);
     console.log(storedCities);
-    console.log(fullCityArray);
-    var newCitiesArray = storedCities.concat(fullCityArray);
-    console.log(newCitiesArray);
 
-    localStorage.setItem('City', newCitiesArray);
+    localStorage.setItem('City', JSON.stringify(storedCities));
 
     // Clear search Field
     cityInputEl.value = '';
 
     // Initialize getCityData function
     getCityData();
+
+    // Initialize addStoredCities function
+    addStoredCities();
 
 });
 
