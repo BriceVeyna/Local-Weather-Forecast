@@ -97,13 +97,16 @@ function getStoredCities() {
 
 // Add stored cities to list under search for quick access
 function addStoredCities() {
-    for (var i = 0; i < storedCities.length; i++) {
+    cityListEl.innerHTML = '';
+
+    for (var i = 1; i < storedCities.length; i++) {
         var storedCity = storedCities[i];
         console.log(storedCity);
     
-        var li = document.createElement('li');
+        var li = document.createElement('button');
         li.textContent = storedCity;
-        li.setAttribute('data-index', i);
+        li.setAttribute('type', 'button');
+        li.setAttribute('class' ,'btn btn-outline-primary');
         cityListEl.appendChild(li);
     }
 }
@@ -140,6 +143,35 @@ searchBtn.addEventListener('click', function (event) {
     addStoredCities();
 
 });
+
+cityListEl.addEventListener('click', function(event) {
+    var element = event.target;
+
+    // Store raw input (City, ST) in variable, log to verify
+    var fullCity = element.value.trim();
+    console.log(fullCity);
+    
+    // Reassign city & state variables to input before & after comma respectively, log to verify
+    city = fullCity.split(', ')[0];
+    console.log(city);
+    state = fullCity.split(', ')[1];
+    console.log(state);
+    
+    // Store searched city in existing array
+    storedCities.push(fullCity);
+    console.log(storedCities);
+    
+    localStorage.setItem('City', JSON.stringify(storedCities));
+    
+    // Clear search Field
+    cityInputEl.value = '';
+    
+    // Initialize getCityData function
+    getCityData();
+    
+    // Initialize addStoredCities function
+    addStoredCities();
+})
 
 // Initialize getStoredCities function
 getStoredCities();
